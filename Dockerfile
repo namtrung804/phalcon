@@ -26,7 +26,7 @@ RUN set -xe \
     && rm -f v${DEVTOOLS_VERSION}.tar.gz
 
 # composer
-ENV COMPOSER_VERSION=1.5.1
+ENV COMPOSER_VERSION=1.5.2
 RUN curl -L https://getcomposer.org/installer -o composer-setup.php \
     && php composer-setup.php --version=${COMPOSER_VERSION} --install-dir=/usr/local/bin --filename=composer \
     && rm -f composer-setup.php
