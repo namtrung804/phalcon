@@ -40,7 +40,6 @@ RUN apt-get update -y \
     && docker-php-ext-enable redis xdebug \
     && docker-php-ext-install opcache pdo_mysql mysqli soap zip
 
-
 WORKDIR /app
 
 RUN usermod -u 1000 www-data
