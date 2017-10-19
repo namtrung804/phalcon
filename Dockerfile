@@ -38,7 +38,6 @@ RUN apt install -y libmcrypt-dev
 RUN apt install -y libldap2-dev
 RUN apt install -y libsqlite3-dev
 RUN apt install -y libsqlite3-0
-RUN docker-php-ext-install soap
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install calendar
 RUN docker-php-ext-install ctype
