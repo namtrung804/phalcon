@@ -35,7 +35,6 @@ RUN curl -L https://getcomposer.org/installer -o composer-setup.php \
 RUN apt update
 RUN apt upgrade -y
 RUN apt install -y libmcrypt-dev
-RUN docker-php-ext-install mcrypt
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd
