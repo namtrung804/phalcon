@@ -69,13 +69,6 @@ RUN docker-php-ext-install opcache
 RUN docker-php-ext-install xml
 RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install xmlwriter
-# idk bz2 enchant
-
-
-
-
-
-
 
 WORKDIR /app
 
