@@ -32,13 +32,17 @@ RUN curl -L https://getcomposer.org/installer -o composer-setup.php \
     && rm -f composer-setup.php
 
 # php modules
-RUN apt update
-RUN apt upgrade -y
+RUN apt-get update -y \
+    && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev libxml2-dev zlib1g-dev unzip git --no-install-recommends --no-install-suggests \
+    && apt-get clean -y \
+    && pecl install redis xdebug \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-enable redis xdebug \
+    && docker-php-ext-install xml opcache pdo_mysql mysqli soap zip
+
 RUN apt install -y libmcrypt-dev
-RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev
-RUN docker-php-ext-install -j$(nproc) gd
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN apt install -y libxml2-dev
+RUN docker-php-ext-install mcrypt
 RUN apt install -y libldap2-dev
 RUN apt install -y libsqlite3-dev
 RUN apt install -y libsqlite3-0
@@ -65,22 +69,13 @@ RUN docker-php-ext-install opcache
 RUN docker-php-ext-install xml
 RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install xmlwriter
-RUN pecl install redis xdebug \
-    && docker-php-ext-enable redis xdebug xml
 # idk bz2 enchant
 
 
 
 
 
-#RUN apt-get update -y \
-#    && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev libxml2-dev zlib1g-dev unzip git --no-install-recommends --no-install-suggests \
-#    && apt-get clean -y \
-#    && pecl install redis xdebug \
-#    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-#    && docker-php-ext-install -j$(nproc) gd \
-#    && docker-php-ext-enable redis xdebug \
-#    && docker-php-ext-install xml opcache pdo_mysql mysqli soap zip
+
 
 WORKDIR /app
 
