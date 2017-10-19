@@ -35,7 +35,6 @@ RUN curl -L https://getcomposer.org/installer -o composer-setup.php \
 RUN apt-get update -y
 
 RUN apt install -y libmcrypt-dev
-RUN docker-php-ext-install mcrypt
 RUN apt install -y libldap2-dev
 RUN apt install -y libsqlite3-dev
 RUN apt install -y libsqlite3-0
