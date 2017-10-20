@@ -32,34 +32,6 @@ RUN curl -L https://getcomposer.org/installer -o composer-setup.php \
     && rm -f composer-setup.php
 
 # php modules
-#RUN apt-get update -y
-#
-#RUN apt install -y libmcrypt-dev
-#RUN apt install -y libldap2-dev
-#RUN apt install -y libsqlite3-dev
-#RUN apt install -y libsqlite3-0
-#RUN docker-php-ext-install bcmath
-#RUN docker-php-ext-install calendar
-#RUN docker-php-ext-install ctype
-#RUN docker-php-ext-install dba
-#RUN docker-php-ext-install dom
-#RUN docker-php-ext-install zip
-#RUN docker-php-ext-install session
-#RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
-#RUN docker-php-ext-install ldap
-#RUN docker-php-ext-install hash
-#RUN docker-php-ext-install sockets
-#RUN docker-php-ext-install pdo
-#RUN docker-php-ext-install mbstring
-#RUN docker-php-ext-install pdo_mysql
-#RUN docker-php-ext-install mysqli
-#RUN docker-php-ext-install fileinfo
-#RUN docker-php-ext-install gettext
-#RUN docker-php-ext-install iconv
-#RUN docker-php-ext-install opcache
-#RUN docker-php-ext-install xml
-#RUN docker-php-ext-install xmlrpc
-#RUN docker-php-ext-install xmlwriter
 
 RUN apt-get update -y \
     && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev libxml2-dev zlib1g-dev unzip git --no-install-recommends --no-install-suggests \
@@ -68,7 +40,7 @@ RUN apt-get update -y \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-enable redis xdebug \
-    && docker-php-ext-install mbstring xml opcache pdo_mysql mysqli soap zip
+    && docker-php-ext-install mbstring xml opcache pdo_mysql mysqli soap zip session bcmath ctype dom hash sockets pdo fileinfo gettext iconv xmlrpc xmlwriter
 
 WORKDIR /app
 
